@@ -5,6 +5,9 @@ Package.describe({
 Package.on_use(function (api) {
     api.use(['bootstrap', 'jquery', 'handlebars', 'templating', 'stylus', 'coffeescript'], 'client');
 
+    // Use the jqueryui pull-in package
+    api.use('jqueryui', 'client');
+
     api.add_files('templates.html', 'client');
     api.add_files('tutorial.styl', 'client');
 
