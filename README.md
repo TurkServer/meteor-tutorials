@@ -46,9 +46,9 @@ Template.foo.steps = [
 
 The steps of the tutorial should be an array of objects, which take the following form:
 
-- `template`: The template that should be displayed in the modal for this step
-- `spot`: jQuery selector of elements to highlight (can be a single selector or separated by commas). If multiple elements are selected, the tutorial automatically calculates a box that will fit around all of them.
-- `onLoad`: a function that will run whenever the tutorial hits this step. Helpful if you need to make sure your interface is in a certain state before displaying the tutorial contents.
+- `template`: (**required**) The template that should be displayed in the modal for this step
+- `spot`: (*optional*) jQuery selector of elements to highlight (can be a single selector or separated by commas). If multiple elements are selected, the tutorial automatically calculates a box that will fit around all of them.
+- `onLoad`: (*optional*) a function that will run whenever the tutorial hits this step. Helpful if you need to make sure your interface is in a certain state before displaying the tutorial contents.
 
 Now, just call the `tutorial` helper with your `steps` from a template whose [offset parent](http://api.jquery.com/offsetParent/) is the same size as the body. This is necessary because the tutorial content is absolutely positioned relative to the window.
 
