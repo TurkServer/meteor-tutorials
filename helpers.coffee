@@ -1,5 +1,5 @@
 Handlebars.registerHelper "tutorial", (steps) ->
-  new Handlebars.SafeString Template._tutorial(new Tutorial(steps))
+  new Handlebars.SafeString Template._tutorial(new TutorialManager(steps))
 
 Template._tutorial.rendered = ->
   # Animate spotlight and modal to appropriate positions

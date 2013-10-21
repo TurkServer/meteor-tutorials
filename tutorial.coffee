@@ -13,7 +13,7 @@ defaultModal =
 spotPadding = 10 # How much to expand the spotlight on all sides
 modalBuffer = 20 # How much to separate the modal from the spotlight
 
-class @Tutorial
+class @TutorialManager
   constructor: (@steps) ->
     @step = 0
     @stepDep = new Deps.Dependency
