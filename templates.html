@@ -1,0 +1,28 @@
+<template name="tutorial">
+    {{! don't put anything reactive in here, it's all animated.}}
+    <div class="spotlight"></div>
+    <div class="modal positioned">
+        <div class="modal-body">
+            {{#isolate}}
+            {{{content}}}
+            {{/isolate}}
+        </div>
+        <div class="modal-footer">
+            <span class="muted pull-left">
+                <i class="icon-move"></i>drag me to reposition
+            </span>
+            {{> tutorial_buttons}}
+        </div>
+    </div>
+</template>
+
+<template name="tutorial_buttons">
+    <div class="btn-group">
+        <button class="btn btn-warning action-tutorial-back" {{prevDisabled}}>
+        <i class="icon-white icon-arrow-left"></i>Back
+        </button>
+        <button class="btn btn-primary action-tutorial-next" {{nextDisabled}}>
+        Next<i class="icon-white icon-arrow-right"></i>
+        </button>
+    </div>
+</template>
