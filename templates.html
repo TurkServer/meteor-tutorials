@@ -1,4 +1,4 @@
-<template name="tutorial">
+<template name="_tutorial">
     {{! don't put anything reactive in here, it's all animated.}}
     <div class="spotlight"></div>
     <div class="modal positioned">
@@ -11,12 +11,12 @@
             <span class="muted pull-left">
                 <i class="icon-move"></i>drag me to reposition
             </span>
-            {{> tutorial_buttons}}
+            {{> _tutorial_buttons}}
         </div>
     </div>
 </template>
 
-<template name="tutorial_buttons">
+<template name="_tutorial_buttons">
     <div class="btn-group">
         <button class="btn btn-warning action-tutorial-back" {{prevDisabled}}>
         <i class="icon-white icon-arrow-left"></i>Back

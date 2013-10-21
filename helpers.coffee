@@ -1,7 +1,7 @@
 Handlebars.registerHelper "tutorial", (steps) ->
-  new Handlebars.SafeString Template.tutorial(new Tutorial(steps))
+  new Handlebars.SafeString Template._tutorial(new Tutorial(steps))
 
-Template.tutorial.rendered = ->
+Template._tutorial.rendered = ->
   # Animate spotlight and modal to appropriate positions
   spot = @find(".spotlight")
   modal = @find(".modal")
@@ -32,22 +32,23 @@ Template.tutorial.rendered = ->
 
   @initialRendered = true
 
-Template.tutorial.destroyed = ->
+Template._tutorial.destroyed = ->
   # Take off the resize watcher
   $(window).off('resize', @resizer) if @resizer
   @resizer = null
 
-Template.tutorial.content = ->
+Template._tutorial.content = ->
   # Run load function, if any
   @currentLoadFunc()?()
 
   @currentTemplate()()
 
-Template.tutorial_buttons.events =
+Template._tutorial_buttons.events =
   "click .action-tutorial-back": -> @prev()
   "click .action-tutorial-next": -> @next()
 
-Template.tutorial_buttons.prevDisabled = ->
+Template._tutorial_buttons.prevDisabled = ->
   unless @prevEnabled() then "disabled" else ""
-Template.tutorial_buttons.nextDisabled = ->
+
+Template._tutorial_buttons.nextDisabled = ->
   unless @nextEnabled() then "disabled" else ""
