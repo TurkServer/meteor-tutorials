@@ -1,15 +1,19 @@
 @import 'nib'
 
+// The darkness of the spotlight shadow
+opacity = 0.66
+
 .spotlight
     display: block;
     position: absolute;
     // The position values are animated and moved
     top: 0;
     left: 0;
-    bottom: 0;
-    right: 0;
+    // Don't want these so we can have a total spot where needed
+    // bottom: auto;
+    // right: auto;
     border-radius: 10px
-    box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.5) inset, 0px 0px 0px 2000px rgba(0,0,0,0.5)
+    box-shadow: 0px 0px 5px 5px rgba(0,0,0,opacity) inset, 0px 0px 0px 4000px rgba(0,0,0,opacity)
     pointer-events: none;
     z-index: 1000
 

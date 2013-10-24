@@ -7,26 +7,26 @@ Template._tutorial.rendered = ->
   modal = @find(".modal")
   tutorial = @data
 
+  # Move things where they should go
   [spotCSS, modalCSS] = tutorial.getPositions()
   $(spot).animate(spotCSS)
   $(modal).animate(modalCSS)
 
-  return if @initialRendered # Only do the below on first render
-  console.log "first tutorial render"
+  return if @initialRendered
 
-  # attach a window resize handler
+  # Only do this on first render
   @resizer = ->
     [spotCSS, modalCSS] = tutorial.getPositions()
     # Don't animate, just move
     $(spot).css(spotCSS)
     $(modal).css(modalCSS)
 
+  # attach a window resize handler
   $(window).on('resize', @resizer)
 
-  # TODO add a dependency for jQuery UI
   # Make modal draggable so it can be moved out of the way if necessary
   # Set an arbitrary scope so it can't be dropped on anything
-  $(modal)?.draggable
+  $(modal).draggable
     scope: "tutorial-modal"
     containment: "window"
 
