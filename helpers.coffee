@@ -1,5 +1,5 @@
-Handlebars.registerHelper "tutorial", (steps) ->
-  new Handlebars.SafeString Template._tutorial(new TutorialManager(steps))
+Handlebars.registerHelper "tutorial", (options) ->
+  new Handlebars.SafeString Template._tutorial(new TutorialManager(options))
 
 Template._tutorial.rendered = ->
   # Animate spotlight and modal to appropriate positions
@@ -46,9 +46,4 @@ Template._tutorial.content = ->
 Template._tutorial_buttons.events =
   "click .action-tutorial-back": -> @prev()
   "click .action-tutorial-next": -> @next()
-
-Template._tutorial_buttons.prevDisabled = ->
-  unless @prevEnabled() then "disabled" else ""
-
-Template._tutorial_buttons.nextDisabled = ->
-  unless @nextEnabled() then "disabled" else ""
+  "click .action-tutorial-finish": -> @onFinish?()

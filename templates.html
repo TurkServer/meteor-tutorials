@@ -18,11 +18,22 @@
 
 <template name="_tutorial_buttons">
     <div class="btn-group">
-        <button class="btn btn-warning action-tutorial-back" {{prevDisabled}}>
-        <i class="icon-white icon-arrow-left"></i>Back
+        {{#if prevEnabled}}
+        <button class="btn btn-warning action-tutorial-back">
+            <i class="icon-white icon-arrow-left"></i> Back
         </button>
-        <button class="btn btn-primary action-tutorial-next" {{nextDisabled}}>
-        Next<i class="icon-white icon-arrow-right"></i>
+        {{/if}}
+
+        {{#if nextEnabled}}
+        <button class="btn btn-primary action-tutorial-next">
+            Next <i class="icon-white icon-arrow-right"></i>
         </button>
+        {{/if}}
+
+        {{#if finishEnabled}}
+        <button class="btn btn-success action-tutorial-finish">
+            Finish <i class="icon-white icon-ok"></i>
+        </button>
+        {{/if}}
     </div>
 </template>

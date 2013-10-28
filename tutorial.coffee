@@ -14,7 +14,10 @@ spotPadding = 10 # How much to expand the spotlight on all sides
 modalBuffer = 20 # How much to separate the modal from the spotlight
 
 class @TutorialManager
-  constructor: (@steps) ->
+  constructor: (options) ->
+    @steps = options.steps
+    @onFinish = options.onFinish || null
+
     @step = 0
     @stepDep = new Deps.Dependency
 
@@ -36,6 +39,10 @@ class @TutorialManager
     @stepDep.depend()
     # TODO don't enable next for certain steps
     return @step < (@steps.length - 1)
+
+  finishEnabled: ->
+    @stepDep.depend()
+    return @step is @steps.length - 1
 
   currentTemplate: ->
     @stepDep.depend()
