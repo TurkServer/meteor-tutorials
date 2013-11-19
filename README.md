@@ -32,7 +32,7 @@ First, specify some templates for your tutorial. Easy as pie:
 Next, define the steps of your tutorial in a helper accessible by whatever template is drawing the tutorial.
 
 ```js
-Template.foo.steps = [
+tutorialSteps = [
   {
     template: Template.tutorial_step1,
     onLoad: function() { console.log("The tutorial has started!"); }
@@ -42,6 +42,11 @@ Template.foo.steps = [
     spot: ".myElement, .otherElement"
   }
 ];
+
+Template.foo.options = {
+    steps: tutorialSteps,
+    onFinish: function() { /* make the tutorial disappear */ }
+};
 ```
 
 The steps of the tutorial should be an array of objects, which take the following form:
@@ -57,9 +62,14 @@ Now, just call the `tutorial` helper with your `steps` from a template whose [of
   {{! My cool user interface}}
 
   {{#if tutorialEnabled}}
-    {{tutorial steps}}
+    {{tutorial options}}
   {{/if}}
 <template>
 ```
 
 Enjoy as your users learn how to use your app much quicker!
+
+### Examples
+
+- Check out the [tutorial for CrowdMapper](https://github.com/mizzao/CrowdMapper/blob/master/client/tutorial/tutorial.coffee).
+- [geekyme](https://github.com/geekyme) has created a demo at http://testtut.meteor.com/
