@@ -1,0 +1,69 @@
+<head>
+  <title>testtut</title>
+</head>
+
+<body>
+</body>
+
+<template name="hello">
+  <div class="container">
+    <div class="row">
+      <div class="span3">
+        <ul class="nav nav-pills nav-stacked">
+          <li><a href="/">Home</a></li>
+          <li><a href="/words">Words</a></li>
+          <li><a href="/pics">Pictures</a></li>
+        </ul>
+      </div>
+      <div class="span9">
+        {{yield}}
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="home">
+  <h1>Welcome</h1>
+  <p>This page is a demo of the meteor-tutorials package</p>
+  {{#if tutorialEnabled}}
+    {{tutorial options}}
+  {{/if}}
+</template>
+
+<template name="words">
+  <div class="words">
+    <h1>Just some words</h1>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ornare turpis tortor, ut fringilla quam sodales at. Morbi suscipit magna pulvinar, volutpat mauris sit amet, molestie quam. Morbi molestie enim lacus, eu euismod metus placerat eget. Curabitur condimentum elit egestas, viverra leo vitae, vehicula leo. Aenean eu tristique massa, ut iaculis dolor. Curabitur pellentesque dignissim neque lacinia lacinia. Mauris iaculis sit amet enim a vestibulum. Duis malesuada metus eget convallis rutrum. Morbi id condimentum dui, eu laoreet urna. In semper massa ut feugiat venenatis. Donec bibendum varius consequat. Nunc vitae justo metus. Morbi faucibus justo cursus, luctus quam nec, condimentum diam. Nam fringilla fringilla mi quis interdum. Phasellus tincidunt elit et mauris volutpat consequat. Vivamus congue consectetur dolor pharetra tincidunt.
+    </p>
+  </div>
+  {{#if tutorialEnabled}}
+    {{tutorial options}}
+  {{/if}}
+</template>
+
+<template name="pics">
+  <h1>Just some pics</h1>
+  <img src="http://lorempixel.com/300/200">
+  <img src="http://lorempixel.com/299/200">
+  <img src="http://lorempixel.com/298/200">
+  <img src="http://lorempixel.com/297/200">
+
+</template>
+
+
+<template name="tutorial_step1">
+  <h2>Welcome to testtut</h2>
+  <p>I made this demo as a simple tutorial of how to use the meteor-tutorials package. Click next.</p>
+</template>
+
+<template name="tutorial_step2">
+  <h2>Combined with other packages</h2>
+  <p>This demo is used with other packages to test drive how the package would play well. I added iron-router to the mix so you can navigate this demo.</p>
+  <p>Click on 'Words' or the finish button to navigate to the 'Words page'</p>
+</template>
+
+<template name="tutorial_step3">
+  <h2>The Words page</h2>
+  <p>Two different tutorials. Each working on a separate page. This one works on the words page. Click 'Finish' to end all the tutorials.</p>
+</template>

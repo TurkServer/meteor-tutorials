@@ -1,0 +1,10 @@
+/* CSS declarations go here */
+
+body {
+	padding-top: 40px;
+	font-family: 'Helvetica Neue', 'Helvetica', 'Lucida Grande', 'Arial', sans-serif !important;
+}
+
+* {
+	box-sizing: border-box;
+}
