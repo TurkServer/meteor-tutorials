@@ -73,3 +73,7 @@ Enjoy as your users learn how to use your app much quicker!
 
 - Check out the [tutorial for CrowdMapper](https://github.com/mizzao/CrowdMapper/blob/master/client/tutorial/tutorial.coffee).
 - [geekyme](https://github.com/geekyme) has created a demo at http://testtut.meteor.com/
+
+### Notes
+
+- I didn't know about it when I conceived this, but this is very similar to [intro.js](http://usablica.github.io/intro.js/).
