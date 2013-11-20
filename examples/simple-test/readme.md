@@ -1,6 +1,6 @@
 testtut
 ====
-Please pardon the badly named repository. lol. It was a haphazard decision to quickly build this demo to show @mizzao. Never expected this to be referenced. DEMO: testtut.meteor.com
+Please pardon the badly named repository. lol. It was a quick decision to quickly build this demo to show [@mizzao](http://github.com/mizzao). Never expected this to be referenced. DEMO: [click here](http://testtut.meteor.com)
 
 
 features
