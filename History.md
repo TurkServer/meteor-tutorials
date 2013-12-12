@@ -1,3 +1,7 @@
+## vNEXT
+
+* Improved width/height computations to support some SVG selections.
+
 ## v0.3.0
 
 * Allow for full dimming (`spot: null`) in addition to full brightness (with `spot: "body"`).

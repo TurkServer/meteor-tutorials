@@ -71,12 +71,16 @@ class @TutorialManager
 
     items.each (i) ->
       $el = $(this)
-      offset = $el.offset()
-      hull.top = Math.min(hull.top, offset.top)
-      hull.left = Math.min(hull.left, offset.left)
       # outer height/width used here: http://api.jquery.com/outerHeight/
-      hull.bottom = Math.min(hull.bottom, $(window).height() - offset.top - $el.outerHeight())
-      hull.right = Math.min(hull.right, $(window).width() - offset.left - $el.outerWidth())
+      # Second computation adds support for *SOME* SVG elements
+      elWidth = $el.outerWidth() || parseInt($el.attr("width"))
+      elHeight = $el.outerHeight() || parseInt($el.attr("height"))
+      offset = $el.offset()
+      
+      hull.top = Math.min(hull.top, offset.top)
+      hull.left = Math.min(hull.left, offset.left)      
+      hull.bottom = Math.min(hull.bottom, $(window).height() - offset.top - elHeight)
+      hull.right = Math.min(hull.right, $(window).width() - offset.left - elWidth)
 
     # enlarge spotlight slightly and find largest side
     maxKey = null
