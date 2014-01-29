@@ -92,7 +92,9 @@ class @TutorialManager
 
   currentTemplate: ->
     @stepDep.depend()
-    return @steps[@step].template
+    template = @steps[@step].template
+    # Support both string and direct references.
+    return if _.isString(template) then Template[template] else template
 
   # Stuff below is currently not reactive
   currentLoadFunc: ->
