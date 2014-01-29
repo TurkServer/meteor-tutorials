@@ -38,11 +38,18 @@ class @TutorialManager
         @actionDeps.push(dep)
 
         # Bind a function to watch for this event
-        @emitter.on step.require.event, ->
-          actionCompleted = if validator then validator.apply(this, arguments) else true
-          if actionCompleted
-            dep.completed = true
-            dep.changed()
+        checker = (->
+          # Bind validator dep in closure
+          val = validator
+          d = dep
+          return ->
+            actionCompleted = if val then val.apply(this, arguments) else true
+            if actionCompleted
+              d.completed = true
+              d.changed()
+        )()
+        @emitter.on step.require.event, checker
+
       else
         @actionDeps.push(null)
 
