@@ -40,8 +40,8 @@ Template._tutorial.destroyed = ->
 Template._tutorial.content = ->
   # Run load function, if any
   @currentLoadFunc()?()
-
-  @currentTemplate()()
+  # Pass tutorial to template so we can use actionRequired helper
+  @currentTemplate()(@)
 
 Template._tutorial_buttons.events =
   "click .action-tutorial-back": -> @prev()

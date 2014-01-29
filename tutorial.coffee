@@ -17,9 +17,34 @@ class @TutorialManager
   constructor: (options) ->
     @steps = options.steps
     @onFinish = options.onFinish || null
+    @emitter = options.emitter
 
     @step = 0
     @stepDep = new Deps.Dependency
+
+    # Build array of reactive dependencies for events
+    return unless @emitter
+    @buildActionDeps()
+
+  buildActionDeps: ->
+    @actionDeps = []
+    for i, step of @steps
+      if step.require
+        check(step.require.event, String)
+        dep = new Deps.Dependency
+        validator = step.require.validator
+        check(validator, Function) if validator
+        dep.completed = false
+        @actionDeps.push(dep)
+
+        # Bind a function to watch for this event
+        @emitter.on step.require.event, ->
+          actionCompleted = if validator then validator.apply(this, arguments) else true
+          if actionCompleted
+            dep.completed = true
+            dep.changed()
+      else
+        @actionDeps.push(null)
 
   prev: ->
     return if @step is 0
@@ -37,8 +62,22 @@ class @TutorialManager
 
   nextEnabled: ->
     @stepDep.depend()
-    # TODO don't enable next for certain steps
-    return @step < (@steps.length - 1)
+    actionDep = @actionDeps[@step]
+    beforeEnd = @step < (@steps.length - 1)
+    if actionDep
+      actionDep.depend()
+      return beforeEnd and actionDep.completed
+    else
+      return beforeEnd
+
+  stepCompleted: ->
+    @stepDep.depend()
+    actionDep = @actionDeps[@step]
+    if actionDep
+      actionDep.depend()
+      return actionDep.completed
+    else
+      return
 
   finishEnabled: ->
     @stepDep.depend()

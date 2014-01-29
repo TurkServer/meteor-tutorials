@@ -1,6 +1,7 @@
 ## vNEXT
 
 * Improved width/height computations to support some SVG selections.
+* Added support for requiring actions to proceed in tutorial steps (doc update needed).
 
 ## v0.3.0
 
