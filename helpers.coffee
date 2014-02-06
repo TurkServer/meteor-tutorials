@@ -29,6 +29,7 @@ Template._tutorial.rendered = ->
   $(modal).draggable
     scope: "tutorial-modal"
     containment: "window"
+    handle: ".modal-footer" # Doesn't work without this on IE, apparently
 
   @initialRendered = true
 
