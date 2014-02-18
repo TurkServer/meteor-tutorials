@@ -69,13 +69,7 @@ class @TutorialManager
 
   nextEnabled: ->
     @stepDep.depend()
-    actionDep = @actionDeps[@step]
-    beforeEnd = @step < (@steps.length - 1)
-    if actionDep
-      actionDep.depend()
-      return beforeEnd and actionDep.completed
-    else
-      return beforeEnd
+    return @step < (@steps.length - 1) and @stepCompleted()
 
   stepCompleted: ->
     @stepDep.depend()
@@ -84,11 +78,11 @@ class @TutorialManager
       actionDep.depend()
       return actionDep.completed
     else
-      return
+      return true
 
   finishEnabled: ->
     @stepDep.depend()
-    return @step is @steps.length - 1
+    return @step is @steps.length - 1 and @stepCompleted()
 
   currentTemplate: ->
     @stepDep.depend()
