@@ -73,12 +73,11 @@ class @TutorialManager
 
   stepCompleted: ->
     @stepDep.depend()
-    actionDep = @actionDeps[@step]
-    if actionDep
-      actionDep.depend()
-      return actionDep.completed
-    else
-      return true
+    actionDep = @actionDeps?[@step]
+    return true unless actionDep
+
+    actionDep.depend()
+    return actionDep.completed
 
   finishEnabled: ->
     @stepDep.depend()
