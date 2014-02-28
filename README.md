@@ -39,21 +39,27 @@ tutorialSteps = [
   },
   {
     template: Template.tutorial_step2,
-    spot: ".myElement, .otherElement"
+    spot: ".myElement, .otherElement",
+    require: {
+      event: "something-emitted",
+      validator: function(args) { ... }
+    }
   }
 ];
 
 Template.foo.options = {
     steps: tutorialSteps,
+    emitter: new EventEmitter(),
     onFinish: function() { /* make the tutorial disappear */ }
 };
 ```
 
 The steps of the tutorial should be an array of objects, which take the following form:
 
-- `template`: (**required**) The template that should be displayed in the modal for this step
+- `template`: (**required**) The template that should be displayed in the modal for this step. You can specify this either directly as a `Template.foo` object, or as a string like `"foo"`.
 - `spot`: (*optional*) jQuery selector of elements to highlight (can be a single selector or separated by commas). If multiple elements are selected, the tutorial automatically calculates a box that will fit around all of them.
 - `onLoad`: (*optional*) a function that will run whenever the tutorial hits this step. Helpful if you need to make sure your interface is in a certain state before displaying the tutorial contents.
+- `require`: (*optional*) an object with an `event` argument and an optional `validator` function to listen for a required user or other action to happen before the **Next** or **Finish** buttons appear. Used in conjunction with an `EventEmitter` instance, as below.
 
 Now, just call the `tutorial` helper with your `steps` from a template whose [offset parent](http://api.jquery.com/offsetParent/) is the same size as the body. This is necessary because the tutorial content is absolutely positioned relative to the window.
 
@@ -67,11 +73,13 @@ Now, just call the `tutorial` helper with your `steps` from a template whose [of
 <template>
 ```
 
+To require users to do certain actions to proceed through the tutorial, pass an object that satisfies the Node [`EventEmitter`](http://nodejs.org/api/events.html) signature via the `emitter` field in the options. The tutorial will bind listeners to all the events specified in `require` fields and check them with the `optional` validator. The event will need to be fired before the the tutorial can be continued, but they don't need to happen on the same step that it is shown, and the tutorial will remember the state of the events across steps. Use the `stepCompleted` helper in a tutorial template to render different text depending on whether the user has completed the required action (see examples).
+
 Enjoy as your users learn how to use your app much quicker!
 
 ### Examples
 
-- Check out the [tutorial for CrowdMapper](https://github.com/mizzao/CrowdMapper/blob/master/client/tutorial/tutorial.coffee).
+- Check out the tutorial code for Crowdmapper: [code](https://github.com/mizzao/CrowdMapper/blob/master/client/tutorial/tutorial.coffee) and [templates](https://github.com/mizzao/CrowdMapper/blob/master/client/tutorial/tutorial.html).
 - [geekyme](https://github.com/geekyme) has created a demo at http://testtut.meteor.com/
 
 ### Notes
