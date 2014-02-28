@@ -3,7 +3,7 @@
     "description": "Create super cool animated tutorials for your Meteor app",
     "homepage": "https://github.com/mizzao/meteor-tutorials",
     "author": "Andrew Mao  (https://github.com/mizzao)",
-    "version": "0.3.1",
+    "version": "0.4.0",
     "git": "https://github.com/mizzao/meteor-tutorials.git",
     "packages": {
         "bootboxjs": {},
