@@ -1,11 +1,9 @@
-Handlebars.registerHelper "tutorial", (options) ->
-  new Handlebars.SafeString Template._tutorial(new TutorialManager(options))
-
-Template._tutorial.rendered = ->
+Template.tutorial.rendered = ->
   # Animate spotlight and modal to appropriate positions
   spot = @find(".spotlight")
   modal = @find(".modal")
-  tutorial = @data
+  # This is a bit of a janky operation because data is supposed to be read-only
+  tutorial = @data = new TutorialManager(@data)
 
   # Move things where they should go
   [spotCSS, modalCSS] = tutorial.getPositions()
@@ -33,12 +31,12 @@ Template._tutorial.rendered = ->
 
   @initialRendered = true
 
-Template._tutorial.destroyed = ->
+Template.tutorial.destroyed = ->
   # Take off the resize watcher
   $(window).off('resize', @resizer) if @resizer
   @resizer = null
 
-Template._tutorial.content = ->
+Template.tutorial.content = ->
   # Run load function, if any
   @currentLoadFunc()?()
   # Pass tutorial to template so we can use actionRequired helper

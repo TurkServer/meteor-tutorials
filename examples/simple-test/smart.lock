@@ -2,19 +2,19 @@
   "meteor": {},
   "dependencies": {
     "basePackages": {
-      "tutorials": {},
+      "tutorials": {
+        "path": "../.."
+      },
       "iron-router": {}
     },
     "packages": {
       "tutorials": {
-        "git": "https://github.com/mizzao/meteor-tutorials.git",
-        "tag": "v0.3.0",
-        "commit": "67b6519a8fc0889310c17605dee8225b76caf96f"
+        "path": "../.."
       },
       "iron-router": {
         "git": "https://github.com/EventedMind/iron-router.git",
-        "tag": "v0.6.1",
-        "commit": "4e1ee0581d68bff422a915dacb0bd30eae10fe08"
+        "tag": "v0.7.0",
+        "commit": "05f34bc48c4cad9fdaa366c1ddcabe6980232ece"
       },
       "bootboxjs": {
         "git": "https://github.com/TimHeckel/meteor-bootboxjs.git",
@@ -23,8 +23,18 @@
       },
       "jqueryui": {
         "git": "https://github.com/mizzao/meteor-jqueryui.git",
-        "tag": "v1.10.3",
-        "commit": "c1c44a17c2e2d92e206dc4ecbaad0b83272de85c"
+        "tag": "v1.10.4",
+        "commit": "c75906fc9e1e19abf1ad5b2963925122ff8a0336"
+      },
+      "blaze-layout": {
+        "git": "https://github.com/EventedMind/blaze-layout.git",
+        "tag": "v0.2.2",
+        "commit": "8bc53798fe5965669ae67c72f91829fcfdceabfd"
+      },
+      "build-fetcher": {
+        "git": "https://github.com/mizzao/meteor-build-fetcher.git",
+        "tag": "v0.1.0",
+        "commit": "e3813b1fc7f5c576e8e1fa4c51ae6f4687780a35"
       }
     }
   }

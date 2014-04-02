@@ -1,6 +1,8 @@
 {
   "packages": {
-    "tutorials": {},
+    "tutorials": {
+      "path": "../.."
+    },
     "iron-router": {}
   }
 }

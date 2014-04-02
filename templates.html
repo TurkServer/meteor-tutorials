@@ -1,11 +1,8 @@
-<template name="_tutorial">
-    {{! don't put anything reactive in here, it's all animated.}}
+<template name="tutorial">
     <div class="spotlight"></div>
     <div class="modal positioned">
         <div class="modal-body">
-            {{#isolate}}
             {{{content}}}
-            {{/isolate}}
         </div>
         <div class="modal-footer">
             <span class="muted pull-left">
