@@ -6,8 +6,7 @@ Package.on_use(function (api) {
     api.use(['jquery', 'stylus', 'coffeescript'], 'client');
     api.use(['ui', 'templating'], 'client');
 
-    // TODO: Replace me with Bootstrap 3
-    api.use('bootstrap', 'client');
+    api.use('bootstrap-3', 'client');
 
     api.add_files('templates.html', 'client');
     api.add_files('tutorial.styl', 'client');

@@ -1,6 +1,8 @@
-## vNEXT
+## v0.6.0
 
-* Made an `EventEmitter` implementation available on the client.
+* Now using Bootstrap 3. **Don't try to use this with something that also pulls in Bootstrap 2**.
+* Made an `EventEmitter` implementation available on the client. See the example app.
+* Improved standalone draggable code for the tutorial dialog.
 
 ## v0.5.0
 

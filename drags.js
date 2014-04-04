@@ -1,44 +1,43 @@
-// Taken from http://css-tricks.com/snippets/jquery/draggable-without-jquery-ui/
+// Modified from http://css-tricks.com/snippets/jquery/draggable-without-jquery-ui/
 // so that we don't have an unnecessary dependency on jQuery UI
 
+// However, this code is significantly less shitty
+
 (function($) {
-  $.fn.drags = function(opt) {
+  $.fn.drags = function(options) {
+    options = $.extend({
+      handle: null,
+      cursor: 'move',
+      draggingClass: 'dragging'
+    }, options);
 
-    opt = $.extend({handle:"",cursor:"move"}, opt);
+    var $handle = this,
+      $drag = this;
 
-    if(opt.handle === "") {
-      var $el = this;
-    } else {
-      var $el = this.find(opt.handle);
+    if( options.handle ) {
+      $handle = $(options.handle);
     }
 
-    return $el.css('cursor', opt.cursor).on("mousedown", function(e) {
-      if(opt.handle === "") {
-        var $drag = $(this).addClass('draggable');
-      } else {
-        var $drag = $(this).addClass('active-handle').parent().addClass('draggable');
-      }
-      var z_idx = $drag.css('z-index'),
-        drg_h = $drag.outerHeight(),
-        drg_w = $drag.outerWidth(),
-        pos_y = $drag.offset().top + drg_h - e.pageY,
-        pos_x = $drag.offset().left + drg_w - e.pageX;
-      $drag.css('z-index', 1000).parents().on("mousemove", function(e) {
-        $('.draggable').offset({
-          top:e.pageY + pos_y - drg_h,
-          left:e.pageX + pos_x - drg_w
-        }).on("mouseup", function() {
-            $(this).removeClass('draggable').css('z-index', z_idx);
-          });
-      });
-      e.preventDefault(); // disable selection
-    }).on("mouseup", function() {
-        if(opt.handle === "") {
-          $(this).removeClass('draggable');
-        } else {
-          $(this).removeClass('active-handle').parent().removeClass('draggable');
-        }
-      });
+    $handle
+      .css('cursor', options.cursor)
+      .on("mousedown", function(e) {
+        var x = $drag.offset().left - e.pageX,
+          y = $drag.offset().top - e.pageY,
+          z = $drag.css('z-index');
 
-  }
+        $(document.documentElement)
+          .on('mousemove.drags', function(e) {
+            $drag.offset({
+              left: x + e.pageX,
+              top: y + e.pageY
+            });
+          })
+          .one('mouseup', function() {
+            $(this).off('mousemove.drags');
+          });
+
+        // disable selection
+        e.preventDefault();
+      });
+  };
 })(jQuery);

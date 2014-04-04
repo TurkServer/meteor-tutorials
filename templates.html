@@ -1,15 +1,18 @@
 <template name="tutorial">
     {{#with tutorialManager}}
     <div class="spotlight"></div>
-    <div class="modal positioned">
-        <div class="modal-body">
-            {{> content }}
-        </div>
-        <div class="modal-footer">
-            <span class="muted pull-left">
-                <i class="icon-move"></i> drag here to reposition
-            </span>
-            {{> _tutorial_buttons}}
+    {{! Note the canonical BS3 div.modal wrapper is omitted here because it's actually NOT modal }}
+    <div class="modal-dialog positioned">
+        <div class="modal-content">
+            <div class="modal-body">
+                {{> content }}
+            </div>
+            <div class="modal-footer compact">
+                <span class="muted pull-left">
+                    <span class="glyphicon glyphicon-move"></span> drag here to reposition
+                </span>
+                {{> _tutorial_buttons}}
+            </div>
         </div>
     </div>
     {{/with}}

@@ -9,7 +9,7 @@ Template.tutorial.rendered = ->
   tutorialManager = @data.tm
 
   $spot = @$(".spotlight")
-  $modal = @$(".modal")
+  $modal = @$(".modal-dialog")
 
   # Add resizer on first render
   @resizer = ->
@@ -45,7 +45,7 @@ Template.tutorial.content = ->
   Meteor.defer =>
     # Animate spotlight and modal to appropriate positions
     $spot = @templateInstance.$(".spotlight")
-    $modal = @templateInstance.$(".modal")
+    $modal = @templateInstance.$(".modal-dialog")
 
     # Move things where they should go
     [spotCSS, modalCSS] = @getPositions()
