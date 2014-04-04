@@ -1,3 +1,10 @@
+## v0.5.0
+
+* Preliminary support for Meteor 0.8.0 (Blaze).
+* Removed dependency on jQuery UI as it was only used to make the modal draggable.
+
+**NOTE**: This package will be moving to Bootstrap 3. This is the last Bootstrap 2 release.
+
 ## v0.4.0
 
 * Improved width/height computations to support some SVG selections.

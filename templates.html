@@ -1,8 +1,9 @@
 <template name="tutorial">
+    {{#with tutorialManager}}
     <div class="spotlight"></div>
     <div class="modal positioned">
         <div class="modal-body">
-            {{{content}}}
+            {{> content }}
         </div>
         <div class="modal-footer">
             <span class="muted pull-left">
@@ -11,6 +12,7 @@
             {{> _tutorial_buttons}}
         </div>
     </div>
+    {{/with}}
 </template>
 
 <template name="_tutorial_buttons">

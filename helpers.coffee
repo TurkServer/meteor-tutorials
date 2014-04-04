@@ -1,35 +1,36 @@
+# Yet another ugly hack to make the tutorial manager accessible to the template instance
+# This is bad because data context is supposed to be read only
+# FIXME: https://github.com/meteor/meteor/issues/2010
+Template.tutorial.tutorialManager = -> @tm = new TutorialManager(@)
+
 Template.tutorial.rendered = ->
-  # Animate spotlight and modal to appropriate positions
-  spot = @find(".spotlight")
-  modal = @find(".modal")
-  # This is a bit of a janky operation because data is supposed to be read-only
-  tutorial = @data = new TutorialManager(@data)
+  # Set the template instance so we can access it from the helper below
+  @data.tm.templateInstance = @
+  tutorialManager = @data.tm
 
-  # Move things where they should go
-  [spotCSS, modalCSS] = tutorial.getPositions()
-  $(spot).animate(spotCSS)
-  $(modal).animate(modalCSS)
+  $spot = @$(".spotlight")
+  $modal = @$(".modal")
 
-  return if @initialRendered
-
-  # Only do this on first render
+  # Add resizer on first render
   @resizer = ->
-    [spotCSS, modalCSS] = tutorial.getPositions()
+    [spotCSS, modalCSS] = tutorialManager.getPositions()
     # Don't animate, just move
-    $(spot).css(spotCSS)
-    $(modal).css(modalCSS)
+    $spot.css(spotCSS)
+    $modal.css(modalCSS)
 
   # attach a window resize handler
   $(window).on('resize', @resizer)
 
   # Make modal draggable so it can be moved out of the way if necessary
-  # Set an arbitrary scope so it can't be dropped on anything
-  $(modal).draggable
-    scope: "tutorial-modal"
-    containment: "window"
-    handle: ".modal-footer" # Doesn't work without this on IE, apparently
+  $modal.drags
+    handle: ".modal-footer"
 
-  @initialRendered = true
+  # jQuery UI code; currently not being used
+  # Set an arbitrary scope so it can't be dropped on anything
+#  $modal.draggable
+#    scope: "tutorial-modal"
+#    containment: "window"
+#    handle: ".modal-footer" # Doesn't work without this on IE, apparently
 
 Template.tutorial.destroyed = ->
   # Take off the resize watcher
@@ -39,8 +40,22 @@ Template.tutorial.destroyed = ->
 Template.tutorial.content = ->
   # Run load function, if any
   @currentLoadFunc()?()
-  # Pass tutorial to template so we can use actionRequired helper
-  @currentTemplate()(@)
+
+  # Move things where they should go, after the template renders
+  Meteor.defer =>
+    # Animate spotlight and modal to appropriate positions
+    $spot = @templateInstance.$(".spotlight")
+    $modal = @templateInstance.$(".modal")
+
+    # Move things where they should go
+    [spotCSS, modalCSS] = @getPositions()
+    $spot.animate(spotCSS)
+    $modal.animate(modalCSS)
+    return
+
+  # Template will render with tutorial as the data context
+  # This function is reactive; the above will run whenever the context changes
+  return @currentTemplate()
 
 Template._tutorial_buttons.events =
   "click .action-tutorial-back": -> @prev()
