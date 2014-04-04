@@ -11,18 +11,21 @@ if (Meteor.isClient) {
   })
 
   Session.set('tutorialEnabled', true);
+  var emitter = new EventEmitter();
 
-  Template.home.helpers({
-    tutorialEnabled: function(){
+  Template.home.tutorialEnabled = function() {
       return Session.get('tutorialEnabled')
-    }
-  });
+  };
 
-  Template.words.helpers({
-    tutorialEnabled: function(){
-      return Session.get('tutorialEnabled')
+  Template.words.events = {
+    "click .words": function() {
+      emitter.emit("wordsClick");
     }
-  });
+  };
+
+  Template.words.tutorialEnabled = function() {
+      return Session.get('tutorialEnabled')
+  };
 
   var homeTutorialSteps = [
     {
@@ -38,25 +41,31 @@ if (Meteor.isClient) {
   var wordsTutorialSteps = [
     {
       template: Template.tutorial_step3,
-      spot: ".words"
+      spot: ".words",
+      require: {
+        event: "wordsClick"
+      }
+    },
+    {
+      template: Template.tutorial_step4,
+      spot: "body"
     }
-  ]
+  ];
 
   Template.home.options = {
     steps: homeTutorialSteps,
     onFinish: function(){
       Router.go('words');
     }
-  }
+  };
 
   Template.words.options = {
     steps: wordsTutorialSteps,
+    emitter: emitter,
     onFinish: function(){
       Session.set('tutorialEnabled', false)
     }
-  }
-
-
+  };
 
 }
 

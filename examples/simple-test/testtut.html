@@ -68,6 +68,16 @@
 </template>
 
 <template name="tutorial_step3">
-  <h2>The Words page</h2>
-  <p>Two different tutorials. Each working on a separate page. This one works on the words page. Click 'Finish' to end all the tutorials.</p>
+    <h2>The Words page</h2>
+    <p>Two different tutorials. Each working on a separate page. This one works on the words page.</p>
+
+    {{#unless stepCompleted}}
+    <b class="text-error">Click the words to enable the next step.</b>
+    {{else}}
+    <b class="text-success">Great, you clicked the words!</b>
+    {{/unless}}
+</template>
+
+<template name="tutorial_step4">
+    <p>Click 'Finish' to end all the tutorials.</p>
 </template>

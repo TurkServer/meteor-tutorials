@@ -1,3 +1,7 @@
+## vNEXT
+
+* Made an `EventEmitter` implementation available on the client.
+
 ## v0.5.0
 
 * Preliminary support for Meteor 0.8.0 (Blaze).

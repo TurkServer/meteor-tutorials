@@ -12,8 +12,12 @@ Package.on_use(function (api) {
     api.add_files('templates.html', 'client');
     api.add_files('tutorial.styl', 'client');
 
+    api.add_files('eventEmitter.coffee', 'client');
     api.add_files('drags.js', 'client');
+
     api.add_files('tutorial.coffee', 'client');
     api.add_files('helpers.coffee', 'client');
+
+    api.export('EventEmitter', 'client');
 });
 
