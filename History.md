@@ -1,3 +1,7 @@
+## vNEXT
+
+* Basic support of touch dragging for repositioning the tutorial dialog.
+
 ## v0.6.0
 
 * Now using Bootstrap 3. **Don't try to use this with something that also pulls in Bootstrap 2**.
