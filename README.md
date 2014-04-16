@@ -76,7 +76,7 @@ Now, just call the `tutorial` helper with your `steps` from a template whose [of
   {{! My cool user interface}}
 
   {{#if tutorialEnabled}}
-    {{tutorial options}}
+    {{> tutorial options}}
   {{/if}}
 <template>
 ```
