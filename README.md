@@ -56,11 +56,14 @@ tutorialSteps = [
 ];
 
 Template.foo.options = {
+    id: "myCoolTutorial",
     steps: tutorialSteps,
     emitter: new EventEmitter(),
     onFinish: function() { /* make the tutorial disappear */ }
 };
 ```
+
+The `id` field of the options is optional. If provided, it preserves the current step of the tutorial across a hot code reload by saving it in a `Session` variable. You will probably find this very useful when testing your tutorial.
 
 The steps of the tutorial should be an array of objects, which take the following form:
 

@@ -1,6 +1,7 @@
-## vNEXT
+## v0.6.1
 
 * Basic support of touch dragging for repositioning the tutorial dialog.
+* Tutorial options can now take an `id` field. A tutorial with a given `id` will preserve its current step across a hot code reload (but not a hard reload, as this step is stored in `Session`.)
 
 ## v0.6.0
 

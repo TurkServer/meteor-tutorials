@@ -13,13 +13,23 @@ defaultModal =
 spotPadding = 10 # How much to expand the spotlight on all sides
 modalBuffer = 20 # How much to separate the modal from the spotlight
 
+_sessionKeyPrefix = "_tutorial_step_"
+
 class @TutorialManager
   constructor: (options) ->
+    check(options.steps, Array)
+
     @steps = options.steps
     @onFinish = options.onFinish || null
     @emitter = options.emitter
 
-    @step = 0
+    # Grab existing step if it exists - but don't grab it reactively,
+    # or this template will keep reloading
+    if options.id?
+      @sessionKey = _sessionKeyPrefix + options.id
+      @step = Deps.nonreactive => Session.get(@sessionKey)
+
+    @step ?= 0
     @stepDep = new Deps.Dependency
 
     # Build array of reactive dependencies for events
@@ -53,15 +63,18 @@ class @TutorialManager
       else
         @actionDeps.push(null)
 
+  # Store steps in Session variable when they change
   prev: ->
     return if @step is 0
     @step--
     @stepDep.changed()
+    Session.set(@sessionKey, @step) if @sessionKey?
 
   next: ->
     return if @step is (@steps.length - 1)
     @step++
     @stepDep.changed()
+    Session.set(@sessionKey, @step) if @sessionKey?
 
   prevEnabled: ->
     @stepDep.depend()
