@@ -1,3 +1,8 @@
+## vNEXT
+
+* Make sure to run `onLoad` functions non-reactively, in case they access reactive variables.
+* Set z-index of dialog modal to be just below that of standard Bootstrap 3 modals.
+
 ## v0.6.1
 
 * Basic support of touch dragging for repositioning the tutorial dialog.

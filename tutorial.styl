@@ -19,7 +19,8 @@ opacity = 0.66
 
 .modal-dialog.positioned
   position: absolute
-  z-index: 10000
+  // Ideal value is above OpenLayers' controls of 1000+x, below bootstrap modal dialog of 1050
+  z-index: 1049
 
 .modal-footer.compact
   margin-top: 0

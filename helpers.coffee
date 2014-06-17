@@ -39,7 +39,9 @@ Template.tutorial.destroyed = ->
 
 Template.tutorial.content = ->
   # Run load function, if any
-  @currentLoadFunc()?()
+  # Don't run it reactively in case it accesses reactive variables
+  if (func = @currentLoadFunc())?
+    Deps.nonreactive(func)
 
   # Move things where they should go, after the template renders
   Meteor.defer =>
