@@ -62,8 +62,12 @@ if (Meteor.isClient) {
   Template.words.options = {
     steps: wordsTutorialSteps,
     emitter: emitter,
-    onFinish: function(){
-      Session.set('tutorialEnabled', false)
+    onFinish: function() {
+      console.log("Finish clicked!");
+      Meteor.setTimeout( function () {
+        // Test debouncing
+        Session.set('tutorialEnabled', false);
+      }, 1000);
     }
   };
 

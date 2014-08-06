@@ -62,4 +62,4 @@ Template.tutorial.content = ->
 Template._tutorial_buttons.events =
   "click .action-tutorial-back": -> @prev()
   "click .action-tutorial-next": -> @next()
-  "click .action-tutorial-finish": -> @onFinish?()
+  "click .action-tutorial-finish": -> @finish()

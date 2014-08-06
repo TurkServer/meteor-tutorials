@@ -33,8 +33,9 @@
         {{/if}}
 
         {{#if finishEnabled}}
-        <button class="btn btn-success action-tutorial-finish">
-            Finish <i class="icon-white icon-ok"></i>
+        <button class="btn btn-success action-tutorial-finish" disabled={{finishPending}}>
+            {{#unless finishPending}}Finish{{else}}Loading...{{/unless}}
+            <i class="icon-white icon-ok"></i>
         </button>
         {{/if}}
     </div>

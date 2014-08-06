@@ -31,6 +31,7 @@ class @TutorialManager
 
     @step ?= 0
     @stepDep = new Deps.Dependency
+    @finishedDep = new Deps.Dependency
 
     # Build array of reactive dependencies for events
     return unless @emitter
@@ -76,6 +77,13 @@ class @TutorialManager
     @stepDep.changed()
     Session.set(@sessionKey, @step) if @sessionKey?
 
+  # Process finish click. If there is a function to call, only call it once.
+  finish: ->
+    if @onFinish?
+      @finishedDep.finished = true
+      @finishedDep.changed()
+      @onFinish()
+
   prevEnabled: ->
     @stepDep.depend()
     return @step > 0
@@ -95,6 +103,11 @@ class @TutorialManager
   finishEnabled: ->
     @stepDep.depend()
     return @step is @steps.length - 1 and @stepCompleted()
+
+  # Debounce for finish button
+  finishPending: ->
+    @finishedDep.depend()
+    return @finishedDep.finished
 
   currentTemplate: ->
     @stepDep.depend()
