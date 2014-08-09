@@ -1,8 +1,7 @@
 {
   "packages": {
-    "tutorials": {
+    "mizzao:tutorials": {
       "path": "../.."
-    },
-    "iron-router": {}
+    }
   }
 }

@@ -1,3 +1,7 @@
+## v0.6.3
+
+* **Update for Meteor 0.9.**
+
 ## v0.6.2
 
 * Make sure to run `onLoad` functions non-reactively, in case they access reactive variables.
