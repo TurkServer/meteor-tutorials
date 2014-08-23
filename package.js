@@ -5,12 +5,12 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-  api.versionsFrom("METEOR-CORE@0.9.0-atm");
+  api.versionsFrom("METEOR-CORE@0.9.0-rc11");
 
   api.use(['jquery', 'stylus', 'coffeescript'], 'client');
   api.use(['ui', 'templating'], 'client');
 
-  api.use("mrt:bootstrap-3@>=3.1.1-1", 'client');
+  api.use("mrt:bootstrap-3@3.2.0-1", 'client');
 
   api.add_files('templates.html', 'client');
   api.add_files('tutorial.styl', 'client');
