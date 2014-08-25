@@ -5,7 +5,7 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-  api.versionsFrom("METEOR-CORE@0.9.0-rc11");
+  api.versionsFrom("METEOR-CORE@0.9.0-atm");
 
   api.use(['jquery', 'stylus', 'coffeescript'], 'client');
   api.use(['ui', 'templating'], 'client');
