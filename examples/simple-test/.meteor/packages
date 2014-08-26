@@ -7,5 +7,5 @@ standard-app-packages
 autopublish
 insecure
 mizzao:tutorials
-cmather:iron-router
-mrt:bootstrap-3
+iron:router
+mizzao:bootstrap-3

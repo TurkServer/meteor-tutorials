@@ -1,3 +1,7 @@
+## vNEXT
+
+* Switch to our own version of bootstrap as the upstream package hasn't been updated for 0.9.
+
 ## v0.6.3
 
 * **Update for Meteor 0.9.**
