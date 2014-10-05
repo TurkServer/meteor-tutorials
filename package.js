@@ -11,6 +11,7 @@ Package.onUse(function (api) {
   api.use(['ui', 'templating'], 'client');
 
   api.use("mizzao:bootstrap-3@3.2.0", 'client');
+  api.use(["tap:i18n"], ["client", "server"]);
 
   api.addFiles('templates.html', 'client');
   api.addFiles('tutorial.styl', 'client');
