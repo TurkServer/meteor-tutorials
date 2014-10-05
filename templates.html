@@ -9,7 +9,7 @@
             </div>
             <div class="modal-footer compact">
                 <span class="muted pull-left">
-                    <span class="glyphicon glyphicon-move"></span> drag here to reposition
+                    <span class="glyphicon glyphicon-move"></span> {{_"drag"}}
                 </span>
                 {{> _tutorial_buttons}}
             </div>
@@ -22,19 +22,19 @@
     <div class="btn-group">
         {{#if prevEnabled}}
         <button class="btn btn-warning action-tutorial-back">
-            <i class="icon-white icon-arrow-left"></i> Back
+            <i class="icon-white icon-arrow-left"></i> {{_ "back"}}
         </button>
         {{/if}}
 
         {{#if nextEnabled}}
         <button class="btn btn-primary action-tutorial-next">
-            Next <i class="icon-white icon-arrow-right"></i>
+            {{_"next"}} <i class="icon-white icon-arrow-right"></i>
         </button>
         {{/if}}
 
         {{#if finishEnabled}}
         <button class="btn btn-success action-tutorial-finish" disabled={{finishPending}}>
-            {{#unless finishPending}}Finish{{else}}Loading...{{/unless}}
+            {{#unless finishPending}}{{_ "finish"}}{{else}}{{_ "loading"}}{{/unless}}
             <i class="icon-white icon-ok"></i>
         </button>
         {{/if}}
