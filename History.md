@@ -1,6 +1,9 @@
 ## vNEXT
 
-* Switch to our own version of bootstrap as the upstream package hasn't been updated for 0.9.
+## v0.6.4
+
+* Switch to a better supported bootstrap package version.
+* Update template helper syntax for new API.
 
 ## v0.6.3
 

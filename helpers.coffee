@@ -1,7 +1,8 @@
 # Yet another ugly hack to make the tutorial manager accessible to the template instance
 # This is bad because data context is supposed to be read only
 # FIXME: https://github.com/meteor/meteor/issues/2010
-Template.tutorial.tutorialManager = -> @tm = new TutorialManager(@)
+Template.tutorial.helpers
+  tutorialManager: -> @tm = new TutorialManager(@)
 
 Template.tutorial.rendered = ->
   # Set the template instance so we can access it from the helper below
@@ -37,27 +38,28 @@ Template.tutorial.destroyed = ->
   $(window).off('resize', @resizer) if @resizer
   @resizer = null
 
-Template.tutorial.content = ->
-  # Run load function, if any
-  # Don't run it reactively in case it accesses reactive variables
-  if (func = @currentLoadFunc())?
-    Deps.nonreactive(func)
+Template.tutorial.helpers
+  content: ->
+    # Run load function, if any
+    # Don't run it reactively in case it accesses reactive variables
+    if (func = @currentLoadFunc())?
+      Deps.nonreactive(func)
 
-  # Move things where they should go, after the template renders
-  Meteor.defer =>
-    # Animate spotlight and modal to appropriate positions
-    $spot = @templateInstance.$(".spotlight")
-    $modal = @templateInstance.$(".modal-dialog")
+    # Move things where they should go, after the template renders
+    Meteor.defer =>
+      # Animate spotlight and modal to appropriate positions
+      $spot = @templateInstance.$(".spotlight")
+      $modal = @templateInstance.$(".modal-dialog")
 
-    # Move things where they should go
-    [spotCSS, modalCSS] = @getPositions()
-    $spot.animate(spotCSS)
-    $modal.animate(modalCSS)
-    return
+      # Move things where they should go
+      [spotCSS, modalCSS] = @getPositions()
+      $spot.animate(spotCSS)
+      $modal.animate(modalCSS)
+      return
 
-  # Template will render with tutorial as the data context
-  # This function is reactive; the above will run whenever the context changes
-  return @currentTemplate()
+    # Template will render with tutorial as the data context
+    # This function is reactive; the above will run whenever the context changes
+    return @currentTemplate()
 
 Template._tutorial_buttons.events =
   "click .action-tutorial-back": -> @prev()

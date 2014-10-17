@@ -13,9 +13,11 @@ if (Meteor.isClient) {
   Session.set('tutorialEnabled', true);
   var emitter = new EventEmitter();
 
-  Template.home.tutorialEnabled = function() {
+  Template.home.helpers({
+    tutorialEnabled: function() {
       return Session.get('tutorialEnabled')
-  };
+    }
+  });
 
   Template.words.events = {
     "click .words": function() {
@@ -23,9 +25,11 @@ if (Meteor.isClient) {
     }
   };
 
-  Template.words.tutorialEnabled = function() {
+  Template.words.helpers({
+    tutorialEnabled: function() {
       return Session.get('tutorialEnabled')
-  };
+    }
+  });
 
   var homeTutorialSteps = [
     {
@@ -52,24 +56,28 @@ if (Meteor.isClient) {
     }
   ];
 
-  Template.home.options = {
-    steps: homeTutorialSteps,
-    onFinish: function(){
-      Router.go('words');
+  Template.home.helpers({
+    options: {
+      steps: homeTutorialSteps,
+      onFinish: function(){
+        Router.go('words');
+      }
     }
-  };
+  });
 
-  Template.words.options = {
-    steps: wordsTutorialSteps,
-    emitter: emitter,
-    onFinish: function() {
-      console.log("Finish clicked!");
-      Meteor.setTimeout( function () {
-        // Test debouncing
-        Session.set('tutorialEnabled', false);
-      }, 1000);
+  Template.words.helpers({
+    options: {
+      steps: wordsTutorialSteps,
+      emitter: emitter,
+      onFinish: function() {
+        console.log("Finish clicked!");
+        Meteor.setTimeout( function () {
+          // Test debouncing
+          Session.set('tutorialEnabled', false);
+        }, 1000);
+      }
     }
-  };
+  });
 
 }
 
