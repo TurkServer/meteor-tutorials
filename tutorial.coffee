@@ -7,7 +7,7 @@ defaultSpot = ->
 defaultModal =
   top: "10%"
   left: "50%"
-  width: 560
+  width: Math.min($(window).width(),560)
   "margin-left": -280
 
 spotPadding = 10 # How much to expand the spotlight on all sides
