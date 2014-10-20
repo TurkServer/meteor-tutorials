@@ -4,11 +4,13 @@ defaultSpot = ->
   bottom: $(window).height()
   right: $(window).width()
 
+width = Math.min($(window).width(),560) #ensure the modal fits on small screens
+
 defaultModal =
   top: "10%"
   left: "50%"
-  width: Math.min($(window).width(),560)
-  "margin-left": -280
+  width: width
+  "margin-left": -width/2 #keep the modal centered
 
 spotPadding = 10 # How much to expand the spotlight on all sides
 modalBuffer = 20 # How much to separate the modal from the spotlight
@@ -179,5 +181,4 @@ class @TutorialManager
           left: $(window).width() - hull.right / 2
           width: width
           "margin-left": -width/2
-
     return [ hull, modal ]

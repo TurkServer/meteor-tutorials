@@ -1,5 +1,10 @@
 ## vNEXT
 
+## v0.6.5
+
+* Ensures modal width is small enough for <560px screens
+* Works on Meteor v1.0 rc2
+
 ## v0.6.4
 
 * Switch to a better supported bootstrap package version.
