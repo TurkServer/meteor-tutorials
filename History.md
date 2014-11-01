@@ -3,7 +3,7 @@
 ## v0.6.4
 
 * Switch to a better supported bootstrap package version.
-* Update template helper syntax for new API.
+* Update template helper syntax for the new API.
 
 ## v0.6.3
 
