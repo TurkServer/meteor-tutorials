@@ -1,5 +1,9 @@
 ## vNEXT
 
+## v0.6.5
+
+* Switch to the official Bootstrap 3 package, `twbs:bootstrap`.
+
 ## v0.6.4
 
 * Switch to a better supported bootstrap package version.
