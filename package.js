@@ -1,7 +1,7 @@
 Package.describe({
   name: "mizzao:tutorials",
   summary: "Create super cool animated tutorials for your Meteor app",
-  version: "0.6.5",
+  version: "0.6.6",
   git: "https://github.com/mizzao/meteor-tutorials.git"
 });
 
@@ -11,7 +11,9 @@ Package.onUse(function (api) {
   api.use(['jquery', 'stylus', 'coffeescript'], 'client');
   api.use(['ui', 'templating'], 'client');
 
-  api.use("twbs:bootstrap@3.3.1", 'client');
+  // Weak dependencies on the most popular bootstrap packages
+  api.use("twbs:bootstrap@3.3.2", 'client', {weak: true});
+  api.use("nemo64:bootstrap@3.3.1_1", 'client', {weak: true});
 
   api.addFiles('templates.html', 'client');
   api.addFiles('tutorial.styl', 'client');

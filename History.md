@@ -1,5 +1,9 @@
 ## vNEXT
 
+## v0.6.6
+
+* Use weak dependencies on Bootstrap packages for more flexibility.
+
 ## v0.6.5
 
 * Switch to the official Bootstrap 3 package, `twbs:bootstrap`.
