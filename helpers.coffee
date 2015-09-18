@@ -45,12 +45,15 @@ Template.tutorial.helpers
     if (func = @currentLoadFunc())?
       Deps.nonreactive(func)
 
+    # don't rely on templateInstance.$ from rendered callback
+    # since sometimes it gets called after the Meteor.defer
+    selector = Template.instance();
+
     # Move things where they should go, after the template renders
     Meteor.defer =>
       # Animate spotlight and modal to appropriate positions
-      $spot = @templateInstance.$(".spotlight")
-      $modal = @templateInstance.$(".modal-dialog")
-
+      $spot = selector.$(".spotlight")
+      $modal = selector.$(".modal-dialog")
       # Move things where they should go
       [spotCSS, modalCSS] = @getPositions()
       $spot.animate(spotCSS)
