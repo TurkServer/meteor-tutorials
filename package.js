@@ -6,14 +6,14 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-  api.versionsFrom("1.0");
+  api.versionsFrom("1.2.0.1");
 
   api.use(['jquery', 'stylus', 'coffeescript'], 'client');
   api.use(['ui', 'templating'], 'client');
 
   // Weak dependencies on the most popular bootstrap packages
-  api.use("twbs:bootstrap@3.3.2", 'client', {weak: true});
-  api.use("nemo64:bootstrap@3.3.1_1", 'client', {weak: true});
+  api.use("twbs:bootstrap@3.3.5", 'client', {weak: true});
+  api.use("nemo64:bootstrap@3.3.5_2", 'client', {weak: true});
 
   api.addFiles('templates.html', 'client');
   api.addFiles('tutorial.styl', 'client');

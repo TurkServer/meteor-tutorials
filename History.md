@@ -1,5 +1,7 @@
 ## vNEXT
 
+* Update versions for Meteor 1.2.
+
 ## v0.6.6
 
 * Use weak dependencies on Bootstrap packages for more flexibility.
