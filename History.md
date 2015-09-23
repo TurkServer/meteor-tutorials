@@ -1,6 +1,9 @@
 ## vNEXT
 
+## v0.6.7
+
 * Update versions for Meteor 1.2.
+* Fix a potential race condition in loading the tutorial template. (#11)
 
 ## v0.6.6
 

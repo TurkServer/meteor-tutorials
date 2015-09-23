@@ -1,7 +1,7 @@
 Package.describe({
   name: "mizzao:tutorials",
   summary: "Create super cool animated tutorials for your Meteor app",
-  version: "0.6.6",
+  version: "0.6.7",
   git: "https://github.com/mizzao/meteor-tutorials.git"
 });
 
