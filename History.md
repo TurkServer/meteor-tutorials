@@ -1,5 +1,8 @@
 ## vNEXT
 
+* Ensure that modal width is small enough for screens below 560px (e.g. mobile).
+* Update documentation for Meteor 1.0+.
+
 ## v0.6.7
 
 * Update versions for Meteor 1.2.
