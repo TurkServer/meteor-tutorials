@@ -4,11 +4,15 @@ defaultSpot = ->
   bottom: $(window).height()
   right: $(window).width()
 
-defaultModal =
-  top: "10%"
-  left: "50%"
-  width: 560
-  "margin-left": -280
+defaultModal = ->
+  # ensure the modal still fits on small screens
+  width = Math.min( $(window).width(), 560)
+  return {
+    top: "10%"
+    left: "50%"
+    width: width
+    "margin-left": -width / 2 # keep the modal centered
+  }
 
 spotPadding = 10 # How much to expand the spotlight on all sides
 modalBuffer = 20 # How much to separate the modal from the spotlight
@@ -122,12 +126,12 @@ class @TutorialManager
   getPositions: ->
     # @stepDep.depend() if we want reactivity
     selector = @steps[@step].spot
-    return [ defaultSpot(), defaultModal ] unless selector?
+    return [ defaultSpot(), defaultModal() ] unless selector?
 
     items = $(selector)
     if items.length is 0
       console.log "Tutorial error: couldn't find spot for " + selector
-      return [ defaultSpot(), defaultModal ]
+      return [ defaultSpot(), defaultModal() ]
 
     # Compute spot and modal positions
     hull =
@@ -158,26 +162,27 @@ class @TutorialManager
         maxVal = v
       hull[k] = Math.max(0, v - spotPadding)
 
+    modalStyle = defaultModal()
+
     modal = switch
       # When the spotlight is very large, stick the modal in the center and let the user deal with it
-      when maxVal < 200 then defaultModal
+      when maxVal < 200 then modalStyle
       # Otherwise put modal on the side with the most space
       when maxKey is "top" # go as close to top as possible
-        $.extend {}, defaultModal, { top: "5%" }
+        $.extend {}, modalStyle, { top: "5%" }
       when maxKey is "bottom" # start from bottom of spot
-        $.extend {}, defaultModal,
+        $.extend {}, modalStyle,
           top: $(window).height() - hull.bottom + modalBuffer
       when maxKey is "left"
-        width = Math.min(hull.left - 2*modalBuffer, defaultModal.width)
-        $.extend {}, defaultModal,
+        width = Math.min(hull.left - 2*modalBuffer, modalStyle.width)
+        $.extend {}, modalStyle,
           left: hull.left / 2
           width: width
           "margin-left": -width/2
       when maxKey is "right"
-        width = Math.min(hull.right - 2*modalBuffer, defaultModal.width)
-        $.extend {}, defaultModal,
+        width = Math.min(hull.right - 2*modalBuffer, modalStyle.width)
+        $.extend {}, modalStyle,
           left: $(window).width() - hull.right / 2
           width: width
           "margin-left": -width/2
-
     return [ hull, modal ]
