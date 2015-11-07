@@ -48,6 +48,12 @@ Template.tutorial.helpers
     # This function is reactive; the above will run whenever the context changes
     return @currentTemplate()
 
+  modalClass: ->
+    return @currentModalClass
+
+  spotlightClass: ->
+    return @currentSpotlightClass
+
 Template._tutorial_buttons.events =
   "click .action-tutorial-back": -> @prev()
   "click .action-tutorial-next": -> @next()

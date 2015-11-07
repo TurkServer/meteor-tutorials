@@ -26,6 +26,8 @@ class @TutorialManager
     @steps = options.steps
     @onFinish = options.onFinish || null
     @emitter = options.emitter
+    @currentModalClass = options.modalClass
+    @currentSpotlightClass = options.spotlightClass
 
     # Grab existing step if it exists - but don't grab it reactively,
     # or this template will keep reloading
