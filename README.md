@@ -5,6 +5,8 @@ meteor-tutorials
 
 Easily create super cool animated tutorials for your Meteor app. This package gives you a dirt easy way to make multi-step tutorials that spotlight multiple parts of your user interface. What a great way to show off how awesome your Meteor app is!
 
+[![Animated example](https://j.gifs.com/W6QO44.gif)](https://www.youtube.com/watch?v=smax46TNPPk)
+
 [See a demo](http://testtut.meteor.com/).
 
 Here's one of my apps. Among other things, it has a list of online users (provided by the [user-status package](https://github.com/mizzao/meteor-user-status)) and a chat room. As users go through the tutorial, which has several steps, the tutorial explains different parts of the user interface to them.
