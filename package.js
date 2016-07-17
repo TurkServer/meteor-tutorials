@@ -1,12 +1,12 @@
 Package.describe({
-  name: "mizzao:tutorials",
-  summary: "Create super cool animated tutorials for your Meteor app",
-  version: "0.6.7",
-  git: "https://github.com/mizzao/meteor-tutorials.git"
+  name: "pramodh:meteor-tutorials",
+  summary: "Create super cool animated tutorials for your Meteor app. A fork of https://github.com/mizzao/meteor-tutorials",
+  version: "0.6.8",
+  git: "https://github.com/whitebeatle/meteor-tutorials.git"
 });
 
 Package.onUse(function (api) {
-  api.versionsFrom("1.2.0.1");
+  api.versionsFrom("1.1.0.3");
 
   api.use(['jquery', 'stylus', 'coffeescript'], 'client');
   api.use(['ui', 'templating'], 'client');

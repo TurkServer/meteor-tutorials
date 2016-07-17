@@ -1,8 +1,8 @@
 <template name="tutorial">
     {{#with tutorialManager}}
-    <div class="spotlight"></div>
+    <div class="spotlight {{spotlightClass}}"></div>
     {{! Note the canonical BS3 div.modal wrapper is omitted here because it's actually NOT modal }}
-    <div class="modal-dialog positioned">
+    <div class="modal-dialog positioned {{modalClass}}">
         <div class="modal-content">
             <div class="modal-body">
                 {{> content }}
