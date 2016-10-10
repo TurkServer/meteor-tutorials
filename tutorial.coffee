@@ -44,7 +44,7 @@ class @TutorialManager
   buildActionDeps: ->
     @actionDeps = []
     for i, step of @steps
-      if step.require
+      if step.require && _.isObject(step.require)
         check(step.require.event, String)
         dep = new Deps.Dependency
         validator = step.require.validator
@@ -98,6 +98,10 @@ class @TutorialManager
 
   stepCompleted: ->
     @stepDep.depend()
+    # If we were given a reactive function, just run that    
+    if _.isFunction(func = @steps[@step].require)
+      return func()
+    
     actionDep = @actionDeps?[@step]
     return true unless actionDep
 
