@@ -8,7 +8,7 @@ Package.describe({
 Package.onUse(function (api) {
   api.versionsFrom("1.2.0.1");
 
-  api.use(['jquery', 'coagmano:stylus', 'coffeescript'], 'client');
+  api.use(['jquery', 'coagmano:stylus@1.0.0', 'coffeescript'], 'client');
   api.use(['ui', 'templating'], 'client');
 
   // Weak dependencies on the most popular bootstrap packages
