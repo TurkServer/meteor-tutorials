@@ -42,6 +42,7 @@ class @TutorialManager
     @buildActionDeps()
 
   buildActionDeps: ->
+    self = @
     @actionDeps = []
     for i, step of @steps
       if step.require
@@ -57,9 +58,13 @@ class @TutorialManager
           # Bind validator dep in closure
           val = validator
           d = dep
+          autoContinue = step.require.autoContinue
+          stepIndex = self.steps.indexOf step
           return ->
             actionCompleted = if val then val.apply(this, arguments) else true
             if actionCompleted
+              if stepIndex == self.step && autoContinue
+                self.next()
               d.completed = true
               d.changed()
         )()
@@ -147,9 +152,9 @@ class @TutorialManager
       elWidth = $el.outerWidth() || parseInt($el.attr("width"))
       elHeight = $el.outerHeight() || parseInt($el.attr("height"))
       offset = $el.offset()
-      
+
       hull.top = Math.min(hull.top, offset.top)
-      hull.left = Math.min(hull.left, offset.left)      
+      hull.left = Math.min(hull.left, offset.left)
       hull.bottom = Math.min(hull.bottom, $(window).height() - offset.top - elHeight)
       hull.right = Math.min(hull.right, $(window).width() - offset.left - elWidth)
 
